@@ -1,10 +1,11 @@
+import Link from "next/link"
+import { useRouter } from "next/router"
 import { client } from "../../libs/client"
 
 // SSG
 export const getStaticProps = async(context) => {
   const id = context.params.id
   const data = await client.get({ endpoint: "blog", contentId: id })
-  // console.log(data)
 
   return {
     props: {
@@ -24,6 +25,7 @@ export const getStaticPaths = async() => {
 }
 
 export default function BlogId({ blog }) {
+  const router = useRouter()
   return (
     <main>
       <div className='text-center bg-green-600 z-10 py-10'>
@@ -31,11 +33,17 @@ export default function BlogId({ blog }) {
         <p>hawk tech Blog</p>
       </div>
      
-      <div className="bg-gray-200 p-4">
-        <div className="bg-white p-4 m-4">
-          <h1 className="text-3xl font-semibold">{blog.title}</h1>
-          <p className="m-2 pb-4">投稿日時: {blog.publishedAt.split('T')[0]}</p>
-          <div dangerouslySetInnerHTML={{ __html: `${blog.body}` }} ></div>
+      <div className="bg-white-200 p-4 m-4">
+        <h1 className="text-4xl font-semibold">{blog.title}</h1>
+        <div className="px-6 py-4 flex justify-between">
+          <p classNameName='right-0 bottom-0'>投稿日時: {blog.publishedAt.split('T')[0]}</p>
+          <button className="rounded-full bg-gray-300 px-4 py-2">{blog.category && `${blog.category.name}`}</button>
+        </div>
+        <div dangerouslySetInnerHTML={{ __html: `${blog.body}` }} className="text-xl" ></div>
+        <div className="fixed right-0 px-12 py-4 m-2">
+          <button className="rounded-full bg-green-600 px-4 py-2" type="button" onClick={() => router.back()}>
+            back
+          </button>
         </div>
       </div>
     </main>

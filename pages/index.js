@@ -32,7 +32,7 @@ export default function Home( { blog } ) {
                 <a href="">
                   <img src={blog.thumbnail.url} width='500' height='500' alt="" />
                   <div className="card-body p-4 m-4">
-                  <div className="font-bold text-xl mb-2">
+                  <div className="font-bold text-2xl mb-2">
                     <h2>{blog.title}</h2>
                   </div>
                   </div>
