@@ -27,7 +27,7 @@ export default function Home( { blog } ) {
       </div>
       <div className='m-5 grid grid-cols-4'>
         {blog.map((blog) => (
-            <div className="max-w-sm rounded overflow-hidden shadow-lg" key={blog.id}>
+            <div className="max-w-sm rounded overflow-hidden shadow-lg m-5" key={blog.id}>
               <Link href={`blog/${blog.id}`}>
                 <a href="">
                   <img src={blog.thumbnail.url} width='500' height='500' alt="" />
