@@ -37,7 +37,7 @@ export default function BlogId({ blog }) {
         <h1 className="text-4xl font-semibold">{blog.title}</h1>
         <div className="px-6 py-4 flex justify-between">
           <p classNameName='right-0 bottom-0'>投稿日時: {blog.publishedAt.split('T')[0]}</p>
-          <button className="rounded-full bg-gray-300 px-4 py-2">{blog.category && `${blog.category.name}`}</button>
+          { blog.category ? <button className="rounded-full bg-gray-300 px-4 py-2">{blog.category && `${blog.category.name}`}</button> : <button className="rounded-full bg-gray-300 px-4 py-2">カテゴリーなし</button> }
         </div>
         <div dangerouslySetInnerHTML={{ __html: `${blog.body}` }} className="text-xl" ></div>
         <div className="fixed right-0 px-12 py-4 m-2">
